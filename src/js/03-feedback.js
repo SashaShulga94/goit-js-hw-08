@@ -17,19 +17,23 @@ function getInputData(e) {
       message: message.value,
     })
   );
+  console.log(getInputData);
 }
+try {
+  function readInputData() {
+    const savedData = JSON.parse(localStorage.getItem(FEEDBACK_FORM));
+    console.log(savedData);
 
-function readInputData() {
-  const savedData = JSON.parse(localStorage.getItem(FEEDBACK_FORM));
-  console.log(savedData);
-  if (savedData) {
-    email.value = savedData.email;
-    message.value = savedData.message;
+    if (Object.entries(savedData)) {
+      // .forEach(function (email, message))
+      email.value = savedData.email;
+      message.value = savedData.message;
+    }
   }
-  //   console.log('email', email.value);
-  //   console.log('message', message.value);
+} catch (error) {
+  console.log(error.email);
+  console.log(error.message);
 }
-
 function saveInputData(evt) {
   evt.preventDefault();
 
